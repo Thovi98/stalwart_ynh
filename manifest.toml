@@ -73,6 +73,16 @@ ram.runtime = "50M"
     autoupdate.asset.amd64 = ".*x86_64-*\\.tar.gz$"
     autoupdate.asset.arm64 = ".*aarch64-*\\.tar.gz$"
 
+    [resources.sources.cli]
+    amd64.url = "https://github.com/stalwartlabs/cli/releases/download/v1.0.0/stalwart-cli-x86_64-unknown-linux-gnu.tar.xz"
+    amd64.sha256 = "0f37be5bd705709ba0e7118be38e4cbdcbb673421616cd85acb7190f1e4d72d2"
+    arm64.url = "https://github.com/stalwartlabs/cli/releases/download/v1.0.0/stalwart-cli-aarch64-unknown-linux-gnu.tar.xz"
+    arm64.sha256 = "de8bbd84bf73e7fa17bd2a242d22c359efc74def98f44632df2a5b197357c27c"
+
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.asset.amd64 = ".*x86_64-*\\.tar.gz$"
+    autoupdate.asset.arm64 = ".*aarch64-*\\.tar.gz$"
+
     [resources.system_user]
 
     [resources.install_dir]
