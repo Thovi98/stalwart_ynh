@@ -20,7 +20,7 @@ ynh_script_progression "Upgrading source files..."
 
 ynh_setup_source --dest_dir="$install_dir"
 
-chown 750 "$install_dir"/stalwart
+chmod 750 "$install_dir"/stalwart
 
 #=================================================
 # UPDATE A CONFIG FILE
