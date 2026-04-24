@@ -84,7 +84,7 @@ ram.runtime = "50M"
     # This will pick a random port for reverse-proxying and store it as the $port setting
 
     [resources.apt]
-    packages = "mariadb-server, deb1, deb2, php8.3-foo, php8.3-bar"
+    packages = ""
 
     [resources.database]
     type = "postgresql"
