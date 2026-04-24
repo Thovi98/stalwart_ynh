@@ -81,6 +81,12 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
+    main.auth_header = false
+
+    admin.url = "/admin"
+    admin.auth_header = false
+    admin.show_tile = false
+    admin.protected = true
 
     [resources.ports]
     # This will pick a random port for reverse-proxying and store it as the $port setting
