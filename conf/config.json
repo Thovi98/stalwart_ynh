@@ -12,7 +12,7 @@
     "authUsername":"stalwart",
     "authSecret":{
         "@type":"Value",
-        "secret":"fc2a5f7fcdf6693e5cf9b86a"
+        "secret":"__DB_PWD__"
         },
     "options":null
 }
