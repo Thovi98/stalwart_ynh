@@ -1,0 +1,11 @@
+{
+  "@type": "PostgreSql",
+  "host": "127.0.0.1",
+  "database": "__DB_NAME__",
+  "port": 5432,
+  "authUsername": "__DB_USER__",
+  "authSecret": "__DB_PWD__",
+  "allowInvalidCerts": false,
+  "timeout": 15000,
+  "poolMaxConnections": 10
+}
