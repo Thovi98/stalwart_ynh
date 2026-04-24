@@ -18,6 +18,8 @@ ynh_script_progression "Setting up source files..."
 
 ynh_setup_source --dest_dir="$install_dir"
 
+chown 750 "$install_dir"/stalwart
+
 #=================================================
 # APP INITIAL CONFIGURATION
 #=================================================
