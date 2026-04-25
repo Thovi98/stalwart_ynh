@@ -6,7 +6,7 @@ id = "stalwart"
 name = "Stalwart"
 description.en = " All-in-one Mail & Collaboration server. Secure, scalable and fluent in every protocol (IMAP, JMAP, SMTP, CalDAV, CardDAV, WebDAV). "
 
-version = "0.16.0~ynh1"
+version = "0.16.1~ynh1"
 
 maintainers = ["Thovi98"]
 
@@ -62,8 +62,8 @@ ram.runtime = "50M"
     [resources.sources]
 
     [resources.sources.main]
-    amd64.url = "https://github.com/stalwartlabs/stalwart/releases/download/v0.16.0/stalwart-x86_64-unknown-linux-gnu.tar.gz"
-    amd64.sha256 = "1be63ae7897ff8235ad7c9a6dd361f136c68f0665bda9a1e561ab0a690503b76"
+    amd64.url = "https://github.com/stalwartlabs/stalwart/releases/download/v0.16.1/stalwart-x86_64-unknown-linux-gnu.tar.gz"
+    amd64.sha256 = "dca78f5493b0d3cec586d1f20cdfff233aace07fb408e7cf2ed96986f58f6bdd"
     arm64.url = "https://github.com/stalwartlabs/stalwart/releases/download/v0.16.0/stalwart-aarch64-unknown-linux-gnu.tar.gz"
     arm64.sha256 = "15e946a17688e125e164cf0bd13d85a0fcf540c64142f8ab8226f034b98c5689"
 
@@ -74,8 +74,8 @@ ram.runtime = "50M"
     autoupdate.asset.arm64 = ".*aarch64-*\\.tar.gz$"
 
     [resources.sources.cli]
-    amd64.url = "https://github.com/stalwartlabs/cli/releases/download/v1.0.0/stalwart-cli-x86_64-unknown-linux-gnu.tar.xz"
-    amd64.sha256 = "0f37be5bd705709ba0e7118be38e4cbdcbb673421616cd85acb7190f1e4d72d2"
+    amd64.url = "https://github.com/stalwartlabs/cli/releases/download/v1.0.1/stalwart-cli-x86_64-unknown-linux-gnu.tar.xz"
+    amd64.sha256 = "8572fceb33a4659aec938c3a777303539df5a4a12abb75ca111549368860183d"
     arm64.url = "https://github.com/stalwartlabs/cli/releases/download/v1.0.0/stalwart-cli-aarch64-unknown-linux-gnu.tar.xz"
     arm64.sha256 = "de8bbd84bf73e7fa17bd2a242d22c359efc74def98f44632df2a5b197357c27c"
 
