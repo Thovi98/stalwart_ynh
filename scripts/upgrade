@@ -30,6 +30,7 @@ chmod 750 "$install_dir"/stalwart-cli
 ynh_script_progression "Updating $app's configuration files..."
 
 ynh_config_add --template="config.json" --destination="$install_dir/config.json"
+ynh_config_add --template=".env" --destination="$install_dir/.env"
 
 #=================================================
 # REAPPLY SYSTEM CONFIGURATION

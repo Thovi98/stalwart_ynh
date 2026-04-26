@@ -84,6 +84,7 @@ ram.runtime = "50M"
     autoupdate.asset.arm64 = ".*aarch64-*\\.tar.gz$"
 
     [resources.system_user]
+    allow_email = true
 
     [resources.install_dir]
 
