@@ -100,7 +100,7 @@ ram.runtime = "50M"
     #admin.protected = true
 
     [resources.ports]
-    main.default = 8080
+    main.default = 4000
 
     [resources.apt]
     packages = ""
