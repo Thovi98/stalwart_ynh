@@ -10,6 +10,8 @@ source /usr/share/yunohost/helpers
 # INITIALIZE AND STORE SETTINGS
 #=================================================
 
+token=$(ynh_string_random --length=45 | base64)
+ynh_app_setting_set --key=key --value=$token
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
