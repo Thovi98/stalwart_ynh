@@ -62,14 +62,12 @@ ynh_systemctl --service="$app" --action="start"
 # This has to be done once the service is started as it looks for the used url
 ynh_script_progression "Creating admin user..."
 pushd $install_dir
-    export STALWART_URL=http://127.0.0.1:$port
-    export STALWART_USER=admin
-    export STALWART_PASSWORD=changeme
+    export STALWART_URL=http://localhost:$port
 
-    #./stalwart-cli --insecure create domain --field name=$domain
-    #./stalwart-cli --insecure create account/user --field name=$admin --field domainid=b
-    #./stalwart-cli --insecure update Account c --field 'credentials={"0":{"@type":"Password","secret":"$password"}}'
-    #./stalwart-cli --insecure update Account c --field '"roles"={"@type": "Admin"}'
+    ./stalwart-cli --insecure --user $admin --password $password create domain --field name=$domain
+    ./stalwart-cli --insecure create account/user --field name=$admin --field domainid=b
+    ./stalwart-cli --insecure update Account c --field 'credentials={"0":{"@type":"Password","secret":"$password"}}'
+    ./stalwart-cli --insecure update Account c --field '"roles"={"@type": "Admin"}'
 popd
 
 #=================================================
