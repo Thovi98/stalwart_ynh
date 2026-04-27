@@ -40,7 +40,7 @@ yunohost service add "$app" --description="Stalwart" --log="/var/log/$app/$app.l
 
 ynh_systemctl --service="$app" --action="start"
 
-sleep 30
+sleep 15
 
 # This has to be done once the service is started as it looks for the used url
 ynh_script_progression "Creating admin user..."
@@ -49,10 +49,10 @@ pushd $install_dir
     export STALWART_RECOVERY_MODE=1
     export STALWART_RECOVERY_ADMIN="$admin":"$password"
 
-    ./stalwart-cli --insecure --user $admin --password $password create domain --field name=$domain
-    ./stalwart-cli --insecure --user $admin --password $password create account/user --field name=$admin --field domainid=b
-    ./stalwart-cli --insecure --user $admin --password $password update Account b --field 'credentials={"0":{"@type":"Password","secret":"$password"}}'
-    ./stalwart-cli --insecure --user $admin --password $password update Account b --field '"roles"={"@type": "Admin"}'
+    #./stalwart-cli --insecure --user $admin --password $password create domain --field name=$domain
+    #./stalwart-cli --insecure --user $admin --password $password create account/user --field name=$admin --field domainid=b
+    #./stalwart-cli --insecure --user $admin --password $password update Account b --field 'credentials={"0":{"@type":"Password","secret":"$password"}}'
+    #./stalwart-cli --insecure --user $admin --password $password update Account b --field '"roles"={"@type": "Admin"}'
 popd
 
 #=================================================
