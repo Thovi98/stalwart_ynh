@@ -35,6 +35,8 @@ ynh_script_progression "Adding $app's configuration files..."
 ynh_config_add --template="config.json" --destination="$install_dir/config.json"
 ynh_config_add --template=".env" --destination="$install_dir/.env"
 
+ynh_config_add_systemd
+yunohost service add "$app" --description="Stalwart" --log="/var/log/$app/$app.log"
 
 ynh_systemctl --service="$app" --action="start"
 
@@ -61,9 +63,6 @@ ynh_script_progression "Adding system configurations related to $app..."
 
 ynh_config_add_nginx
 
-ynh_config_add_systemd
-yunohost service add "$app" --description="Stalwart" --log="/var/log/$app/$app.log"
-
 ynh_config_add_logrotate
 
 # Create a dedicated Fail2Ban config
@@ -74,7 +73,7 @@ ynh_config_add_logrotate
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="restart"
+#ynh_systemctl --service="$app" --action="restart"
 
 #=================================================
 # END OF SCRIPT
