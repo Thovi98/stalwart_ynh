@@ -57,6 +57,8 @@ ynh_script_progression "Starting $app's systemd service..."
 
 ynh_systemctl --service="$app" --action="start"
 
+sleep 15
+
 # This has to be done once the service is started as it looks for the used url
 ynh_script_progression "Creating admin user..."
 pushd $install_dir
