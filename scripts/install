@@ -32,6 +32,7 @@ chmod 750 "$install_dir"/stalwart-cli
 #=================================================
 ynh_script_progression "Adding $app's configuration files..."
 
+ynh_config_add --template="config.json" --destination="$install_dir/config.json"
 ynh_config_add --template=".env" --destination="$install_dir/.env"
 
 ynh_config_add_systemd
@@ -48,13 +49,11 @@ pushd $install_dir
     export STALWART_RECOVERY_MODE=1
     export STALWART_RECOVERY_ADMIN="$admin":"$password"
 
-    #./stalwart-cli --insecure --user $admin --password $password create domain --field name=$domain
-    #./stalwart-cli --insecure --user $admin --password $password create account/user --field name=$admin --field domainid=b
-    #./stalwart-cli --insecure --user $admin --password $password update Account c --field 'credentials={"0":{"@type":"Password","secret":"$password"}}'
-    #./stalwart-cli --insecure --user $admin --password $password update Account c --field '"roles"={"@type": "Admin"}'
+    ./stalwart-cli --insecure --user $admin --password $password create domain --field name=$domain
+    ./stalwart-cli --insecure --user $admin --password $password create account/user --field name=$admin --field domainid=b
+    ./stalwart-cli --insecure --user $admin --password $password update Account b --field 'credentials={"0":{"@type":"Password","secret":"$password"}}'
+    ./stalwart-cli --insecure --user $admin --password $password update Account b --field '"roles"={"@type": "Admin"}'
 popd
-
-ynh_config_add --template="config.json" --destination="$install_dir/config.json"
 
 #=================================================
 # SYSTEM CONFIGURATION
