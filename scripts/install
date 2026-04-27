@@ -65,9 +65,9 @@ pushd $install_dir
     export STALWART_URL=http://localhost:$port
 
     ./stalwart-cli --insecure --user $admin --password $password create domain --field name=$domain
-    ./stalwart-cli --insecure create account/user --field name=$admin --field domainid=b
-    ./stalwart-cli --insecure update Account c --field 'credentials={"0":{"@type":"Password","secret":"$password"}}'
-    ./stalwart-cli --insecure update Account c --field '"roles"={"@type": "Admin"}'
+    ./stalwart-cli --insecure --user $admin --password $password create account/user --field name=$admin --field domainid=b
+    ./stalwart-cli --insecure --user $admin --password $password update Account c --field 'credentials={"0":{"@type":"Password","secret":"$password"}}'
+    ./stalwart-cli --insecure --user $admin --password $password update Account c --field '"roles"={"@type": "Admin"}'
 popd
 
 #=================================================
