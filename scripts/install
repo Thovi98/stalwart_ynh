@@ -32,7 +32,6 @@ chmod 750 "$install_dir"/stalwart-cli
 #=================================================
 ynh_script_progression "Adding $app's configuration files..."
 
-ynh_config_add --template="config.json" --destination="$install_dir/config.json"
 ynh_config_add --template=".env" --destination="$install_dir/.env"
 
 ynh_config_add_systemd
@@ -55,6 +54,7 @@ pushd $install_dir
     #./stalwart-cli --insecure --user $admin --password $password update Account c --field '"roles"={"@type": "Admin"}'
 popd
 
+ynh_config_add --template="config.json" --destination="$install_dir/config.json"
 
 #=================================================
 # SYSTEM CONFIGURATION
@@ -73,7 +73,7 @@ ynh_config_add_logrotate
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-#ynh_systemctl --service="$app" --action="restart"
+ynh_systemctl --service="$app" --action="restart"
 
 #=================================================
 # END OF SCRIPT
