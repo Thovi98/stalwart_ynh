@@ -35,6 +35,25 @@ ynh_script_progression "Adding $app's configuration files..."
 ynh_config_add --template="config.json" --destination="$install_dir/config.json"
 ynh_config_add --template=".env" --destination="$install_dir/.env"
 
+
+ynh_systemctl --service="$app" --action="start"
+
+sleep 5
+
+# This has to be done once the service is started as it looks for the used url
+ynh_script_progression "Creating admin user..."
+pushd $install_dir
+    export STALWART_URL=http://localhost:"$port"
+    export STALWART_RECOVERY_MODE=1
+    export STALWART_RECOVERY_ADMIN="$admin":"$password"
+
+    #./stalwart-cli --insecure --user $admin --password $password create domain --field name=$domain
+    #./stalwart-cli --insecure --user $admin --password $password create account/user --field name=$admin --field domainid=b
+    #./stalwart-cli --insecure --user $admin --password $password update Account c --field 'credentials={"0":{"@type":"Password","secret":"$password"}}'
+    #./stalwart-cli --insecure --user $admin --password $password update Account c --field '"roles"={"@type": "Admin"}'
+popd
+
+
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
@@ -55,21 +74,7 @@ ynh_config_add_logrotate
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="start"
-
-sleep 15
-
-# This has to be done once the service is started as it looks for the used url
-ynh_script_progression "Creating admin user..."
-pushd $install_dir
-    export STALWART_URL=http://localhost:$port
-    export STALWART_RECOVERY_ADMIN=$admin:$password
-
-    #./stalwart-cli --insecure --user $admin --password $password create domain --field name=$domain
-    #./stalwart-cli --insecure --user $admin --password $password create account/user --field name=$admin --field domainid=b
-    #./stalwart-cli --insecure --user $admin --password $password update Account c --field 'credentials={"0":{"@type":"Password","secret":"$password"}}'
-    #./stalwart-cli --insecure --user $admin --password $password update Account c --field '"roles"={"@type": "Admin"}'
-popd
+ynh_systemctl --service="$app" --action="restart"
 
 #=================================================
 # END OF SCRIPT
