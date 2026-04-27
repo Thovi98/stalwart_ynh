@@ -63,8 +63,8 @@ sleep 15
 ynh_script_progression "Creating admin user..."
 pushd $install_dir
     export STALWART_URL=http://127.0.0.1:$port
-    export STALWART_USER=$admin
-    export STALWART_PASSWORD=$password
+    export STALWART_USER=admin
+    export STALWART_PASSWORD=changeme
 
     ./stalwart-cli --insecure create domain --field name=$domain
     ./stalwart-cli --insecure create account/user --field name=$admin --field domainid=b
