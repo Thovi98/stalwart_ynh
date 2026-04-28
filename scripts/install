@@ -65,10 +65,10 @@ pushd $install_dir
     export STALWART_RECOVERY_ADMIN="$admin":"$password"
     export STALWART_RECOVERY_MODE=1
    
-    #./stalwart-cli --insecure --api-key $token create domain --field name=$domain
-    #./stalwart-cli --insecure --api-key $token create account/user --field name=$admin --field domainid=b
-    #./stalwart-cli --insecure --api-key $token update Account b --field 'credentials={"0":{"@type":"Password","secret":"'"$password"'"}}'
-    #./stalwart-cli --insecure --api-key $token update Account b --field '"roles"={"@type": "Admin"}'
+    ./stalwart-cli --insecure --api-key $token create domain --field name=$domain
+    ./stalwart-cli --insecure --api-key $token create account/user --field name=$admin --field domainid=b
+    ./stalwart-cli --insecure --api-key $token update Account b --field 'credentials={"0":{"@type":"Password","secret":"'"$password"'"}}'
+    ./stalwart-cli --insecure --api-key $token update Account b --field '"roles"={"@type": "Admin"}'
 popd
 
 
