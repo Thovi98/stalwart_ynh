@@ -61,11 +61,13 @@ pushd $install_dir
     ./stalwart --config $install_dir/config.json > "/var/log/$app/$app.log" 2>&1 &
 
     # Wait for the specific log message to appear
-    ynh_script_progression "Waiting for Stalwart to finish starting..."
-    while ! grep -q "Network listener started" "/var/log/$app/$app.log"; do
-        sleep 2 # Sleep for 2 seconds before checking the log file again
-    done
+   # ynh_script_progression "Waiting for Stalwart to finish starting..."
+   # while ! grep -q "Network listener started" "/var/log/$app/$app.log"; do
+   #     sleep 2 # Sleep for 2 seconds before checking the log file again
+   # done
 
+    sleep 20
+    
     # Configure via cli
     ./stalwart-cli --insecure --user $admin --password $password create domain --field name=$domain
     ./stalwart-cli --insecure --user $admin --password $password create account/user --field name=$admin --field domainid=b
