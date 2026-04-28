@@ -62,6 +62,7 @@ ynh_script_progression "Creating admin user..."
 pushd $install_dir
     export STALWART_URL=http://localhost:8080
     export STALWART_RECOVERY_ADMIN="$admin":"$password"
+    export STALWART_RECOVERY_MODE=1
 
     ./stalwart-cli --insecure --user $admin --password $password create domain --field name=$domain
     ./stalwart-cli --insecure --user $admin --password $password create account/user --field name=$admin --field domainid=b
