@@ -55,7 +55,7 @@ ynh_config_add_nginx
 # Create a dedicated Fail2Ban config
 # ynh_config_add_fail2ban --logpath="/var/log/nginx/${domain}-error.log" --failregex="Regex to match into the log for a failed login"
 
-sleep 30
+sleep 15
 
 # This has to be done once the service is started as it looks for the used url
 ynh_script_progression "Creating admin user..."
@@ -63,10 +63,10 @@ pushd $install_dir
     export STALWART_URL=http://localhost:8080
     export STALWART_RECOVERY_ADMIN="$admin":"$password"
 
-    ./stalwart-cli --insecure --user $admin --password $password create domain --field name=$domain
-    ./stalwart-cli --insecure --user $admin --password $password create account/user --field name=$admin --field domainid=b
-    ./stalwart-cli --insecure --user $admin --password $password update Account b --field 'credentials={"0":{"@type":"Password","secret":"'"$password"'"}}'
-    ./stalwart-cli --insecure --user $admin --password $password update Account b --field '"roles"={"@type": "Admin"}'
+  #  ./stalwart-cli --insecure --user $admin --password $password create domain --field name=$domain
+  #  ./stalwart-cli --insecure --user $admin --password $password create account/user --field name=$admin --field domainid=b
+  # ./stalwart-cli --insecure --user $admin --password $password update Account b --field 'credentials={"0":{"@type":"Password","secret":"'"$password"'"}}'
+  #  ./stalwart-cli --insecure --user $admin --password $password update Account b --field '"roles"={"@type": "Admin"}'
 popd
 
 
