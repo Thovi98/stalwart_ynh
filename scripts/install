@@ -40,6 +40,11 @@ ynh_config_add_logrotate
 touch /var/log/$app/$app.log
 chown $app:$app /var/log/$app/$app.log
 
+ynh_config_add_systemd
+yunohost service add "$app" --description="Stalwart" --log="/var/log/$app/$app.log"
+
+ynh_systemctl --service="$app" --action="start"
+
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
@@ -50,6 +55,8 @@ ynh_config_add_nginx
 # Create a dedicated Fail2Ban config
 # ynh_config_add_fail2ban --logpath="/var/log/nginx/${domain}-error.log" --failregex="Regex to match into the log for a failed login"
 
+sleep 30
+
 # This has to be done once the service is started as it looks for the used url
 ynh_script_progression "Creating admin user..."
 pushd $install_dir
@@ -57,36 +64,19 @@ pushd $install_dir
     export STALWART_RECOVERY_ADMIN="$admin":"$password"
     export STALWART_RECOVERY_MODE_PORT=$port
 
-    # Launch Stalwart
-    ./stalwart --config $install_dir/config.json > "/var/log/$app/$app.log" 2>&1 &
-
-    # Wait for the specific log message to appear
-   # ynh_script_progression "Waiting for Stalwart to finish starting..."
-   # while ! grep -q "Network listener started" "/var/log/$app/$app.log"; do
-   #     sleep 2 # Sleep for 2 seconds before checking the log file again
-   # done
-
-    sleep 20
-    
-    # Configure via cli
     ./stalwart-cli --insecure --user $admin --password $password create domain --field name=$domain
     ./stalwart-cli --insecure --user $admin --password $password create account/user --field name=$admin --field domainid=b
     ./stalwart-cli --insecure --user $admin --password $password update Account b --field 'credentials={"0":{"@type":"Password","secret":"'"$password"'"}}'
     ./stalwart-cli --insecure --user $admin --password $password update Account b --field '"roles"={"@type": "Admin"}'
-
-    # Terminate Stalwart process using pkill so it can be launched via systemd
-    pkill -f "$install_dir/stalwart"
 popd
 
-ynh_config_add_systemd
-yunohost service add "$app" --description="Stalwart" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemctl --service="$app" --action="start"
+ynh_systemctl --service="$app" --action="restart"
 
 #=================================================
 # END OF SCRIPT
