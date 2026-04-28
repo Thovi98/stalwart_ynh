@@ -60,11 +60,11 @@ ynh_config_add_nginx
 # This has to be done once the service is started as it looks for the used url
 ynh_script_progression "Creating admin user..."
 pushd $install_dir
-    export STALWART_URL=http://localhost:8080
-   # export STALWART_RECOVERY_ADMIN="$admin":"$password"
-   # export STALWART_RECOVERY_MODE=1
-   export STALWART_TOKEN=$token
-
+    export STALWART_HTTP_PORT=$port
+    export STALWART_URL=http://localhost:$port
+    export STALWART_RECOVERY_ADMIN="$admin":"$password"
+    export STALWART_RECOVERY_MODE=1
+   
     #./stalwart-cli --insecure --api-key $token create domain --field name=$domain
     #./stalwart-cli --insecure --api-key $token create account/user --field name=$admin --field domainid=b
     #./stalwart-cli --insecure --api-key $token update Account b --field 'credentials={"0":{"@type":"Password","secret":"'"$password"'"}}'
