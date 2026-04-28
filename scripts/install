@@ -60,7 +60,6 @@ sleep 15
 # This has to be done once the service is started as it looks for the used url
 ynh_script_progression "Creating admin user..."
 pushd $install_dir
-    export STALWART_HTTP_PORT=$port
     export STALWART_URL=http://localhost:$port
     export STALWART_RECOVERY_ADMIN="$admin":"$password"
     export STALWART_RECOVERY_MODE=1
