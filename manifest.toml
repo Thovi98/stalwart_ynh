@@ -96,7 +96,7 @@ ram.runtime = "50M"
     main.default = 8080
 
     [resources.apt]
-    packages = ""
+    packages = "redis-server"
 
     [resources.database]
     type = "postgresql"
